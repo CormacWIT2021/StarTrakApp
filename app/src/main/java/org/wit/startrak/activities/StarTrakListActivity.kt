@@ -1,5 +1,6 @@
 package org.wit.startrak.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +46,12 @@ class StarTrakListActivity : AppCompatActivity(), StarTrakListener {
 
     override fun onEpisodeClick(startrakEpisode: StartrakModel) {
         startActivityForResult(intentFor<StarTrakActivity>().putExtra("episode_edit", startrakEpisode),0)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    {
+        recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }

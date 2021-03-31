@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_startrak.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -30,30 +29,28 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
             startrakEpisode = intent.extras?.getParcelable<StartrakModel>("episode_edit")!!
             episodeTitle.setText(startrakEpisode.title)
             episodeSeries.setText(startrakEpisode.series)
+            episodeSeason.setText(startrakEpisode.season)
             btnAdd.setText(R.string.save_episode)
         }
 
-        btnAdd.setOnClickListener()
-        {
+        btnAdd.setOnClickListener() {
             startrakEpisode.title = episodeTitle.text.toString()
             startrakEpisode.season = episodeSeason.text.toString()
             startrakEpisode.series = episodeSeries.text.toString()
-            if (startrakEpisode.title.isNotEmpty()) {
+            if (startrakEpisode.title.isEmpty()) {
                 toast(R.string.enter_episode_title)
-            }
-            else {
+            } else {
                 if (edit) {
                     app.starTrakEpisodes.update(startrakEpisode.copy())
-
                 } else {
                     app.starTrakEpisodes.create(startrakEpisode.copy())
                 }
             }
+            info("add Button Pressed: $episodeTitle")
+            setResult(AppCompatActivity.RESULT_OK)
+            finish()
+        }
 
-                info("Add button pressed: ${startrakEpisode}")
-                setResult(AppCompatActivity.RESULT_OK)
-                finish()
-            }
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
     }

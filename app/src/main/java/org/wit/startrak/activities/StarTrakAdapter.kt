@@ -12,8 +12,7 @@ interface StarTrakListener {
     fun onEpisodeClick(startrakEpisode: StartrakModel)
 }
 
-class StarTrakAdapter constructor(private var startrakEpisodes: List<StartrakModel>, private val listener: StarTrakListener) :
-    RecyclerView.Adapter<StarTrakAdapter.MainHolder>() {
+class StarTrakAdapter constructor(private var startrakEpisodes: List<StartrakModel>, private val listener: StarTrakListener) :  RecyclerView.Adapter<StarTrakAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         return MainHolder(
