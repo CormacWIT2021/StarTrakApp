@@ -3,13 +3,17 @@
     package="org.wit.startrak">
 
     <application
+        android:name="org.wit.startrak.main.MainApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StarTrak">
+
         <activity android:name=".activities.StarTrakActivity">
+        </activity>
+        <activity android:name=".activities.StarTrakListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
