@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StarTrak">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.StarTrakActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

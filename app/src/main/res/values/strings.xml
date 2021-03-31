@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Star Trak</string>
+    <string name="button_addEpisode">Add Episode</string>
+    <string name="hint_episodeTitle">Episode Name</string>
+    <string name="hint_episodeSeason">Season</string>
+    <string name="hint_episodeSeries">Series</string>
+    <string name = "hint_episodeRating">Rating</string>
 </resources>
