@@ -8,7 +8,11 @@ import kotlinx.android.synthetic.main.card_startrak.view.*
 import org.wit.startrak.R
 import org.wit.startrak.models.StartrakModel
 
-class StarTrakAdapter constructor(private var startrakEpisodes: List<StartrakModel>) :
+interface StarTrakListener {
+    fun onEpisodeClick(startrakEpisode: StartrakModel)
+}
+
+class StarTrakAdapter constructor(private var startrakEpisodes: List<StartrakModel>, private val listener: StarTrakListener) :
     RecyclerView.Adapter<StarTrakAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -24,17 +28,18 @@ class StarTrakAdapter constructor(private var startrakEpisodes: List<StartrakMod
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val startrakEpisode = startrakEpisodes [holder.adapterPosition]
-        holder.bind(startrakEpisode)
+        holder.bind(startrakEpisode, listener)
     }
 
     override fun getItemCount(): Int = startrakEpisodes.size
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
-        fun bind(startrakEpisode: StartrakModel)
+        fun bind(startrakEpisode: StartrakModel, listener: StarTrakListener)
         {
             itemView.episodeTitle.text = startrakEpisode.title
             itemView.episodeSeries.text = startrakEpisode.series
+            itemView.setOnClickListener {listener.onEpisodeClick(startrakEpisode)}
         }
     }
 }

@@ -17,11 +17,21 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
 
     var startrakEpisode = StartrakModel()
     lateinit var app : MainApp
+    var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startrak)
         app = application as MainApp
+
+        if(intent.hasExtra("episode_edit"))
+        {
+            edit = true
+            startrakEpisode = intent.extras?.getParcelable<StartrakModel>("episode_edit")!!
+            episodeTitle.setText(startrakEpisode.title)
+            episodeSeries.setText(startrakEpisode.series)
+            btnAdd.setText(R.string.save_episode)
+        }
 
         btnAdd.setOnClickListener()
         {
@@ -29,19 +39,21 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
             startrakEpisode.season = episodeSeason.text.toString()
             startrakEpisode.series = episodeSeries.text.toString()
             if (startrakEpisode.title.isNotEmpty()) {
-                app.starTrakEpisodes.add(startrakEpisode.copy())
-                info("Add button pressed: $episodeTitle")
-                for (i in app.starTrakEpisodes.indices) {
-                    info("StarTrak Episode [$i]:${app.starTrakEpisodes}")
+                toast(R.string.enter_episode_title)
+            }
+            else {
+                if (edit) {
+                    app.starTrakEpisodes.update(startrakEpisode.copy())
+
+                } else {
+                    app.starTrakEpisodes.create(startrakEpisode.copy())
                 }
-                setResult(AppCompatActivity.RESULT_OK)
-                finish()
-            } else {
-                toast("Please Enter a title")
             }
 
-        }
-
+                info("Add button pressed: ${startrakEpisode}")
+                setResult(AppCompatActivity.RESULT_OK)
+                finish()
+            }
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
     }

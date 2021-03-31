@@ -7,4 +7,6 @@
     <string name = "hint_episodeRating">Rating</string>
     <string name = "menu_addEpisode"> Add </string>
     <string name = "menu_cancelEpisodeAdd">Cancel</string>
+    <string name= "enter_episode_title"> Please enter an Episode Name</string>
+    <string name = "save_episode">Save Episode</string>
 </resources>

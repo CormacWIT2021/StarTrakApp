@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import kotlinx.android.synthetic.main.activity_startrak_list.*
+import org.jetbrains.anko.intentFor
 
 import org.wit.startrak.R
 import org.wit.startrak.main.MainApp
 
 import org.jetbrains.anko.startActivityForResult
+import org.wit.startrak.models.StartrakModel
 
-class StarTrakListActivity : AppCompatActivity() {
+class StarTrakListActivity : AppCompatActivity(), StarTrakListener {
 
     lateinit var app: MainApp
 
@@ -23,10 +24,11 @@ class StarTrakListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = StarTrakAdapter(app.starTrakEpisodes)
+        recyclerView.adapter = StarTrakAdapter(app.starTrakEpisodes.findAll(), this)
 
         toolbar.title = title
         setSupportActionBar(toolbar)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -39,6 +41,10 @@ class StarTrakListActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onEpisodeClick(startrakEpisode: StartrakModel) {
+        startActivityForResult(intentFor<StarTrakActivity>().putExtra("episode_edit", startrakEpisode),0)
     }
 
 }
