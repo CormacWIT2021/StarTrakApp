@@ -14,4 +14,9 @@
         <!-- Customize your theme here. -->
 
     </style>
+    <!-- Tool bar styling -->
+    <style name="MyToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/navy</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
 </resources>

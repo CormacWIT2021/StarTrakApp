@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_startrak.view.*
 import org.wit.startrak.R
+import org.wit.startrak.helpers.readImageFromPath
 import org.wit.startrak.models.StartrakModel
 
 interface StarTrakListener {
@@ -38,6 +39,7 @@ class StarTrakAdapter constructor(private var startrakEpisodes: List<StartrakMod
         {
             itemView.episodeTitle.text = startrakEpisode.title
             itemView.episodeSeries.text = startrakEpisode.series
+            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, startrakEpisode.image))
             itemView.setOnClickListener {listener.onEpisodeClick(startrakEpisode)}
         }
     }

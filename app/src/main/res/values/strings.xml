@@ -9,4 +9,9 @@
     <string name = "menu_cancelEpisodeAdd">Cancel</string>
     <string name= "enter_episode_title"> Please enter an Episode Name</string>
     <string name = "save_episode">Save Episode</string>
+    <string name="button_addImage">Add Image</string>
+    <string name="button_addVideo">Add Video</string>
+    <string name="select_episode_image">Select Episode image</string>
+    <string name="change_episode_image">Change Image</string>
+    <string name="episode_image">Episode image</string>
 </resources>

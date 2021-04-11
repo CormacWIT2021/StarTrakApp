@@ -1,5 +1,6 @@
 package org.wit.startrak.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,9 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.startrak.R
+import org.wit.startrak.helpers.readImage
+import org.wit.startrak.helpers.readImageFromPath
+import org.wit.startrak.helpers.showImagePicker
 import org.wit.startrak.main.MainApp
 import org.wit.startrak.models.StartrakModel
 
@@ -17,6 +21,8 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
     var startrakEpisode = StartrakModel()
     lateinit var app : MainApp
     var edit = false
+    val IMAGE_REQUEST = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +37,10 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
             episodeSeries.setText(startrakEpisode.series)
             episodeSeason.setText(startrakEpisode.season)
             btnAdd.setText(R.string.save_episode)
+            episodeImage.setImageBitmap(readImageFromPath(this, startrakEpisode.image))
+            if(startrakEpisode.image != null){
+                chooseImage.setText(R.string.change_episode_image)
+            }
         }
 
         btnAdd.setOnClickListener() {
@@ -51,6 +61,10 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
             finish()
         }
 
+        chooseImage.setOnClickListener {
+           showImagePicker(this, IMAGE_REQUEST)
+        }
+
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
     }
@@ -68,4 +82,17 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
             }
             return super.onOptionsItemSelected(item)
         }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            IMAGE_REQUEST -> {
+                if (data != null) {
+                    startrakEpisode.image = data.getData().toString()
+                    episodeImage.setImageBitmap(readImage(this, resultCode, data))
+                    chooseImage.setText(R.string.change_episode_image)
+                }
+            }
+        }
+    }
     }
