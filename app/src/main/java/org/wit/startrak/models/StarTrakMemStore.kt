@@ -32,6 +32,10 @@ class StarTrakMemStore : StarTrakStore, AnkoLogger {
             foundEpisode.series = starTrakEpisode.series
             foundEpisode.season = starTrakEpisode.season
             foundEpisode.image = starTrakEpisode.image
+            foundEpisode.lat = starTrakEpisode.lat
+            foundEpisode.lng = starTrakEpisode.lng
+            foundEpisode.zoom = starTrakEpisode.zoom
+
             logAll()
         }
     }

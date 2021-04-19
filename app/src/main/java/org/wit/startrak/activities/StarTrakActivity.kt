@@ -1,6 +1,7 @@
 package org.wit.startrak.activities
 
 import android.content.Intent
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,12 +9,14 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_startrak.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import org.wit.startrak.R
 import org.wit.startrak.helpers.readImage
 import org.wit.startrak.helpers.readImageFromPath
 import org.wit.startrak.helpers.showImagePicker
 import org.wit.startrak.main.MainApp
+import org.wit.startrak.models.Filminglocation
 import org.wit.startrak.models.StartrakModel
 
 class StarTrakActivity : AppCompatActivity(), AnkoLogger {
@@ -22,7 +25,8 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app : MainApp
     var edit = false
     val IMAGE_REQUEST = 1
-
+    val FILMINGLOCATION_REQUEST = 2
+    var filminglocation = Filminglocation(34.0937458, -118.3614976, 15f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +45,14 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
             if(startrakEpisode.image != null){
                 chooseImage.setText(R.string.change_episode_image)
             }
+
+
         }
+
+        filmingLocation.setOnClickListener {
+            startActivityForResult(intentFor<MapsActivity>().putExtra("Filming Location", filminglocation), FILMINGLOCATION_REQUEST)
+        }
+
 
         btnAdd.setOnClickListener() {
             startrakEpisode.title = episodeTitle.text.toString()
@@ -93,6 +104,13 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
                     chooseImage.setText(R.string.change_episode_image)
                 }
             }
+
+            FILMINGLOCATION_REQUEST -> {
+                if(data != null)
+                {
+                    filminglocation = data.extras?.getParcelable<Filminglocation>("Filming Location")!!
+                }
+            }
         }
     }
-    }
+}
