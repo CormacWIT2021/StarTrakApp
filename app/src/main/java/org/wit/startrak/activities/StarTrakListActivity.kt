@@ -25,7 +25,7 @@ class StarTrakListActivity : AppCompatActivity(), StarTrakListener {
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = StarTrakAdapter(app.starTrakEpisodes.findAll(), this)
+        loadEpisodes()
 
         toolbar.title = title
         setSupportActionBar(toolbar)
@@ -50,8 +50,18 @@ class StarTrakListActivity : AppCompatActivity(), StarTrakListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
     {
-        recyclerView.adapter?.notifyDataSetChanged()
+        loadEpisodes()
         super.onActivityResult(requestCode, resultCode, data)
     }
 
+    private fun loadEpisodes()
+    {
+        showEpisodes(app.starTrakEpisodes.findAll())
+    }
+
+    fun showEpisodes(starTrakEpisodes: List<StartrakModel>)
+    {
+        recyclerView.adapter = StarTrakAdapter(starTrakEpisodes, this)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
 }

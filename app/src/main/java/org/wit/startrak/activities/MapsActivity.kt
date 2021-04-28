@@ -58,7 +58,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     override fun onBackPressed() {
         val resultIntent = Intent()
-        resultIntent.putExtra("location", filmingLocation)
+        resultIntent.putExtra("Filming Location", filmingLocation)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
         super.onBackPressed()
