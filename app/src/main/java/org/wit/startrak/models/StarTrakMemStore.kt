@@ -40,9 +40,15 @@ class StarTrakMemStore : StarTrakStore, AnkoLogger {
         }
     }
 
+    override fun delete(starTrakEpisode: StartrakModel) {
+        starTrakEpisodes.remove(starTrakEpisode)
+    }
+
     fun logAll()
     {
         starTrakEpisodes.forEach{ info("${it}") }
     }
+
+
 
 }

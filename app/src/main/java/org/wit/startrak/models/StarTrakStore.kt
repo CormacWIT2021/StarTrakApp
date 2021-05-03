@@ -4,4 +4,5 @@ interface StarTrakStore {
     fun findAll(): List<StartrakModel>
     fun create(starTrakEpisode: StartrakModel)
     fun update(starTrakEpisode: StartrakModel)
+    fun delete(starTrakEpisode: StartrakModel)
 }

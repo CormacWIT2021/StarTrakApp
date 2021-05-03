@@ -82,11 +82,18 @@ class StarTrakActivity : AppCompatActivity(), AnkoLogger {
 
         override fun onCreateOptionsMenu(menu: Menu?): Boolean {
             menuInflater.inflate(R.menu.menu_startrakepisode, menu)
+            if (edit && menu !=null) menu.getItem(0).setVisible(true)
             return super.onCreateOptionsMenu(menu)
         }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
             when (item?.itemId) {
+                R.id.item_delete -> {
+                    app.starTrakEpisodes.delete(startrakEpisode)
+                    finish()
+                }
+
                 R.id.item_cancel -> {
                     finish()
                 }

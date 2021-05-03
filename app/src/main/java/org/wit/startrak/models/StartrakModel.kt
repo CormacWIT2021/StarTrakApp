@@ -9,6 +9,7 @@ data class StartrakModel(var image: String = "",
                          var title: String = "",
                          var season: String= "",
                          var series: String="",
+                         var rating: Double = 0.0,
                          var lat: Double = 0.0,
                          var lng: Double = 0.0,
                          var zoom: Float = 0f

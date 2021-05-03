@@ -40,7 +40,7 @@
 
                 <EditText
                     android:id="@+id/episodeTitle"
-                    android:layout_width="match_parent"
+                    android:layout_width="391dp"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints=""
@@ -78,15 +78,6 @@
                     android:textSize="14sp" />
 
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="47dp"
-                    android:layout_gravity="center"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:rating="0"
-                    android:stepSize="1" />
 
                 <Button
                     android:id="@+id/chooseImage"
@@ -104,35 +95,34 @@
                     android:id="@+id/episodeImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/ic_launcher"/>
-
-                <Button
-                    android:id="@+id/btnAdd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:stateListAnimator="@null"
-                    android:text="@string/button_addEpisode"
-                    android:background="@color/design_default_color_secondary_variant"
-                    android:textColor="@color/design_default_color_on_primary"
-                    android:textSize="16sp" />
+                    app:srcCompat="@mipmap/ic_launcher"
+                    android:contentDescription="TODO" />
 
                 <Button
                     android:id="@+id/filmingLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:paddingBottom="8dp"
+                    android:background="@color/design_default_color_secondary_variant"
                     android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:stateListAnimator="@null"
                     android:text="@string/button_filmingLocation"
-                    android:background="@color/design_default_color_secondary_variant"
                     android:textColor="@color/design_default_color_on_primary"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
-
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/design_default_color_secondary_variant"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/button_addEpisode"
+                    android:textColor="@color/design_default_color_on_primary"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>

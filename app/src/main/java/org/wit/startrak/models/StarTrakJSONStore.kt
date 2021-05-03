@@ -66,5 +66,10 @@ class StarTrakJSONStore : StarTrakStore, AnkoLogger {
         starTrakEpisodes = Gson().fromJson(jsonString, listType)
     }
 
+    override fun delete(starTrakEpisode: StartrakModel)
+    {
+        starTrakEpisodes.remove(starTrakEpisode)
+        serialize()
+    }
 
 }

@@ -16,4 +16,5 @@
     <string name="episode_image">Episode image</string>
     <string name="button_filmingLocation"> Choose Filming Location</string>
     <string name="title_activity_maps">Map</string>
+    <string name="menu_deleteEpisode">Delete Episode</string>
 </resources>
